@@ -52,7 +52,7 @@ var jane = Object.create(personProto, {
 */
 
 /************************************ Primitives Vs Objects ***************************************/
-
+/*
 // Primitives
 var a = 23;
 var b = a;
@@ -85,3 +85,35 @@ change(age, obj);
 
 console.log(age);
 console.log(obj.city);
+*/
+
+/******************************* First Class Functions Passing functions as Arguments ********************************************/
+var years = [1990, 1972, 1980, 1900, 2015];
+function ArrayCalc(arr, fun){
+    var resArr = [];
+    for (var i = 0; i < arr.length; i++){
+        resArr.push(fun(arr[i]));
+    }
+    return resArr;
+}
+function calculateAge (el){
+    return 2020 - el;
+}
+function isFullAge(el){
+    return el >= 18;
+}
+
+function maxHeartRate(el) {
+    if (el >= 18 && el<= 81){
+        return Math.round(206.9 - (0.67 * el));
+    } else {
+        return -1;
+    }
+    
+}
+var ages = ArrayCalc(years, calculateAge);
+var fullAge = ArrayCalc(ages, isFullAge);
+var maxRate = ArrayCalc(ages, maxHeartRate);
+console.log(ages);
+console.log(fullAge);
+console.log(maxRate);
