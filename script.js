@@ -88,6 +88,7 @@ console.log(obj.city);
 */
 
 /******************************* First Class Functions Passing functions as Arguments ********************************************/
+/*
 var years = [1990, 1972, 1980, 1900, 2015];
 function ArrayCalc(arr, fun){
     var resArr = [];
@@ -117,3 +118,35 @@ var maxRate = ArrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAge);
 console.log(maxRate);
+*/
+
+/************************************ First Class Functions: Functions Returning Functions *******************************************/
+
+function interviewQuestion(job){
+        if(job === 'designer') {
+           return function (name){
+            console.log(name + ', can you explain what a UX design is?');
+           } 
+        }else if (job === 'teacher') {
+            return function(name){
+                console.log('What subject do you teach, ' + name + '?');
+            }
+        }else {
+            return function(name){
+                console.log('Hello, '+ name + ' What do you do?');
+            }
+            
+        }
+    }
+
+    var teacherQuestion = interviewQuestion('teacher');
+    var desingerQuestion = interviewQuestion('designer');
+    var developerQuestion = interviewQuestion('developer');
+
+    teacherQuestion('John');
+    desingerQuestion('Adem');
+    developerQuestion('Sara');
+
+    // Other method
+
+    interviewQuestion('teacher')('Mark');
