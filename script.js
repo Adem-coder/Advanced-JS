@@ -121,7 +121,7 @@ console.log(maxRate);
 */
 
 /************************************ First Class Functions: Functions Returning Functions *******************************************/
-
+/*
 function interviewQuestion(job){
         if(job === 'designer') {
            return function (name){
@@ -150,3 +150,23 @@ function interviewQuestion(job){
     // Other method
 
     interviewQuestion('teacher')('Mark');
+*/
+
+/******************************************* Immediately Invoked Function Expressions (IIFE) *************************************************/
+
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+
+// IIFE
+(function(){
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+(function(goodLuck){
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(5);
