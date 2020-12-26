@@ -153,7 +153,7 @@ function interviewQuestion(job){
 */
 
 /******************************************* Immediately Invoked Function Expressions (IIFE) *************************************************/
-
+/*
 function game() {
     var score = Math.random() * 10;
     console.log(score >= 5);
@@ -170,3 +170,39 @@ game();
     var score = Math.random() * 10;
     console.log(score >= 5 - goodLuck);
 })(5);
+*/
+
+/**************************************** Closures *******************************************/
+
+function retirement(retirementAge){
+var a = ' Years left until retirement';
+    return function(yearOfBirth){
+        var age = 2020 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementEu = retirement(65);
+var retirementGermany = retirement(67);
+var retirementChina = retirement(69);
+
+retirementEu(1990);
+retirementGermany(1975);
+retirementChina(1992);
+
+function interviewQuestion(job){
+
+    return function (name){
+        if(job === 'designer') {
+            console.log(name + ', can you explain what a UX design is?');
+
+        }else if (job === 'teacher') {
+            console.log('What subject do you teach, ' + name + '?');
+        }else {
+            console.log('Hello, '+ name + ' What do you do?');
+
+        }
+    }
+}
+
+interviewQuestion('designer')('Adem');
