@@ -173,7 +173,7 @@ game();
 */
 
 /**************************************** Closures *******************************************/
-
+/*
 function retirement(retirementAge){
 var a = ' Years left until retirement';
     return function(yearOfBirth){
@@ -206,3 +206,63 @@ function interviewQuestion(job){
 }
 
 interviewQuestion('designer')('Adem');
+
+*/
+
+/************************** Bind Call and Apply *************************************/
+
+var john = {
+    name: 'John',
+    age: 20,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ', ladies and gentlemen! I\'m ' + this.name + ', I\'m a'+ this.job + ' and I\'m '+ this.age + ' years old.');
+        
+        } else if (style === 'friendly'){
+console.log('Hey what\'s up? I\'m ' + this.name + ', I\'m a '+ this.job + ' and I\'m '+ this.age + ' years old. Have a nice '+ timeOfDay + '.');
+        }
+    }
+}
+
+john.presentation('formal', 'morning');
+
+// call
+var emily = {
+    name: 'Emily',
+    age: 25,
+    job: 'Designer'
+}
+
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+// Bind
+
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('morning');
+johnFriendly('night');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('morning'); 
+
+// 
+var years = [1990, 1972, 1980, 1900, 2015];
+function ArrayCalc(arr, fun){
+    var resArr = [];
+    for (var i = 0; i < arr.length; i++){
+        resArr.push(fun(arr[i]));
+    }
+    return resArr;
+}
+function calculateAge (el){
+    return 2020 - el;
+}
+function isFullAge(limit, el){
+    return el >= limit;
+}
+
+var ages = ArrayCalc(years,  calculateAge);
+
+var fullJapan = ArrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
